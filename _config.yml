@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
+title: blog
+subtitle: 
+description: 清风舞明月，幽梦落花间。一梦醒来，恍如隔世，两眉间，相思尽染
 keywords:
-author: John Doe
+author: missj
 language: en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://wanmisy.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -35,7 +35,10 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+# 支持图片
+# 把blog（hexo）目录下的_config.yml里的psot_asset_folder:设置为true
+# 在blog（hexo）目录下执行: `npm install hexo-asset-image --save`
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -81,3 +84,7 @@ deploy:
   type: git
   repo: https://github.com/wanmisy/wanmisy.github.io.git
   branch: master
+
+search:
+  path: search.xml
+  field: post
