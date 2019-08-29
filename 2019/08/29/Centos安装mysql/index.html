@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>线程 | blog</title>
-  <meta name="keywords" content=" java , 编程 , 并发 , 线程 ">
-  <meta name="description" content="线程 | blog">
+  <title>Centos安装mysql | blog</title>
+  <meta name="keywords" content=" linux , mysql ">
+  <meta name="description" content="Centos安装mysql | blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="清风舞明月，幽梦落花间。一梦醒来，恍如隔世，两眉间，相思尽染">
 <meta property="og:type" content="website">
@@ -563,9 +563,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-线程" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Centos安装mysql" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">线程</h1>
+        <h1 class="article-title">Centos安装mysql</h1>
     
     <div class="article-meta">
         
@@ -573,32 +573,28 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="Java">Java</a>
+                <a href="javascript:" data-rel="linux">linux</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">java</a>
+            <a href="javascript:" class="color1">linux</a>
             
-            <a href="javascript:" class="color3">编程</a>
-            
-            <a href="javascript:" class="color3">并发</a>
-            
-            <a href="javascript:" class="color3">线程</a>
+            <a href="javascript:" class="color1">mysql</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 09:45:15'>2018-12-16 10:41</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 11:14:23'>2019-08-29 10:30</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.7k</span>
+        <span>字数:603</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -617,7 +613,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程简单实现的三种方式"><span class="toc-text">线程简单实现的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程中断的方法"><span class="toc-text">线程中断的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的生命周期"><span class="toc-text">线程的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#守护线程"><span class="toc-text">守护线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当前线程副本：ThreadLocal"><span class="toc-text">当前线程副本：ThreadLocal</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos-安装mysql"><span class="toc-text">centos 安装mysql</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -632,561 +628,76 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong># 线程</strong></p>
-<p>线程是程序中的执行线程，Java虚拟机允许应用程序并发的运行多个执行程序。每个线程都有一个优先级，高优先级的线程的执行优先于低优先级线程</p>
-<h3 id="线程简单实现的三种方式"><a href="#线程简单实现的三种方式" class="headerlink" title="线程简单实现的三种方式"></a>线程简单实现的三种方式</h3><ol>
-<li><p>extend Thread 覆盖run方法</p>
-<pre><code class="java">/**
-
- \* 
-
- \* @author missj
-
- \* @Description 1. extend Thread 覆盖run方法
-
- *
-
- */
-
-public class Thread1 extends Thread {
-
-
-</code></pre>
+        <h2 id="centos-安装mysql"><a href="#centos-安装mysql" class="headerlink" title="centos 安装mysql"></a>centos 安装mysql</h2><ul>
+<li><p>查看系统版本</p>
+<pre><code>  [root@iZj6c2henxcd80p48fqem4Z ~]# lsb_release -a
+  LSB Version:    :core-4.1-amd64:core-4.1-noarch
+  Distributor ID:    CentOS
+  Description:    CentOS Linux release 7.6.1810 (Core) 
+  Release:    7.6.1810
+  Codename:    Core</code></pre></li>
+<li><p>检查系统是否安装mysql</p>
+<pre><code>  yum list installed | grep mysql</code></pre></li>
+<li><p>如果发现有系统自带mysql，果断删除</p>
+<pre><code>  yum -y remove mysql-libs.x86_64</code></pre></li>
+<li><p><em>注意：在新版本的CentOS7中，默认的数据库已更新为了Mariadb，而非 MySQL，所以执行 yum install mysql 命令只是更新Mariadb数据库，并不会安装 MySQL 。*</em>  </p>
 </li>
-</ol>
-<p>   ​    @Override</p>
-<p>   ​    public void run() {</p>
-<p>   ​        super.run();</p>
-<p>   ​        </p>
-<p>   ​        try {</p>
-<p>   ​            // 模拟做事情执行了500ms</p>
-<p>   ​            Thread.sleep(500L);</p>
-<p>   ​        } catch (InterruptedException e) {</p>
-<p>   ​            // TODO Auto-generated catch block</p>
-<p>   ​            e.printStackTrace();</p>
-<p>   ​        }</p>
-<p>   ​        System.out.println(“这是线程A” + new Date());</p>
-<p>   ​    }</p>
-<p>   ​    </p>
-<p>   ​    </p>
-<p>   ​    public static void main(String[] args) {</p>
-<p>   ​        Thread1 thread1 = new Thread1();</p>
-<p>   ​        thread1.start();</p>
-<p>   ​        System.out.println(“这是主线程” + new Date());</p>
-<p>   ​    }</p>
-<p>   }</p>
-<pre><code>
-   这种方法的缺点是extend只能继承一个父类  
-
-2. 实现Runnable接口，实现run方法
-</code></pre><p>   import java.util.Date;</p>
-<p>   public class Thread2 implements Runnable {</p>
-<p>   ​    @Override</p>
-<p>   ​    public void run() {</p>
-<p>   ​        try {</p>
-<p>   ​            // 模拟做事情执行了500ms</p>
-<p>   ​            Thread.sleep(500L);</p>
-<p>   ​        } catch (InterruptedException e) {</p>
-<p>   ​            // TODO Auto-generated catch block</p>
-<p>   ​            e.printStackTrace();</p>
-<p>   ​        }</p>
-<p>   ​        System.out.println(“这是线程A” + new Date());</p>
-<p>   ​    }</p>
-<p>   ​    </p>
-<p>   ​    public static void main(String[] args) {</p>
-<p>   ​        Thread2 thread2 = new Thread2();</p>
-<p>   ​        // 注意启动方式有点不一样</p>
-<p>   ​        new Thread(thread2).start();</p>
-<p>   ​        System.out.println(“这是主线程” + new Date());</p>
-<p>   ​    }<br>   }</p>
-<pre><code>
-3.  继承Callable，实现call方法，可以得到线程的执行结果
-
-   ```java
-   import java.util.concurrent.Callable;
-
-   import java.util.concurrent.ExecutionException;
-
-   import java.util.concurrent.FutureTask;
-
-
-
-   public class Threads3 {
-
-   ​    public static void main(String[] args) {
-
-   ​        TheadMain thread = new TheadMain();
-
-   ​        FutureTask&lt;String&gt; futureTask = new FutureTask&lt;&gt;(thread);
-
-   ​        new Thread(futureTask).start();
-
-   ​        System.out.println(&quot;this is main task&quot;);
-
-
-
-   ​        try {
-
-   ​            System.out.println(&quot;得到的返回结果是&quot; + futureTask.get());
-
-   ​        } catch (InterruptedException e) {
-
-   ​            // TODO Auto-generated catch block
-
-   ​            e.printStackTrace();
-
-   ​        } catch (ExecutionException e) {
-
-   ​            // TODO Auto-generated catch block
-
-   ​            e.printStackTrace();
-
-   ​        }
-
-   ​    }
-
-   }
-
-
-
-   class TheadMain implements Callable&lt;String&gt; {
-
-
-
-   ​    @Override
-
-   ​    public String call() throws Exception {
-
-   ​        // 模拟事情做了500ms
-
-   ​        Thread.sleep(500);
-
-   ​        System.out.println(&quot;this is thread B&quot;);
-
-   ​        return &quot;thread B&quot;;
-
-   ​    }
-
-
-
-   }</code></pre><h3 id="线程中断的方法"><a href="#线程中断的方法" class="headerlink" title="线程中断的方法"></a>线程中断的方法</h3><ol>
-<li><p>Thread.stop()  </p>
-<p>不安全，不建议使用</p>
-</li>
-<li><p>Thread.interrupt()</p>
-</li>
-</ol>
-<h3 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h3><p>五个状态new、start、running、blocked、dead</p>
-<h3 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h3><blockquote>
-<p>后台运行线程。进程结束，守护线程结束，必须在启动线程前调用setDaemon(true)，才能将它设置为守护线程</p>
-</blockquote>
-<pre><code class="java">public class ThreadMain {
-
-​    public static void main(String[] args) {
-
-
-
-​        ThreadA threadA = new ThreadA();
-
-​        ThreadB threadB = new ThreadB();
-
-​        threadB.setDaemon(true);
-
-​        threadA.start();
-
-​        threadB.start();
-
-​        Thread mainThread = Thread.currentThread();
-
-​        System.out.println(&quot;线程A是是否是守护线程&quot; + threadA.isDaemon());
-
-​        System.out.println(&quot;线程B是是否是守护线程&quot; + threadB.isDaemon());
-
-​        System.out.println(&quot;线程main是是否是守护线程&quot; + mainThread.isDaemon());
-
-​    }
-
-​    
-
-
-
-}
-
-
-
-class ThreadA extends Thread{
-
-​    @Override
-
-​    public void run() {
-
-​        super.run();
-
-​        for (int i = 0; i &lt; 5; i++) {
-
-​            System.out.println(&quot;Thread A run&quot; + i + &quot;times&quot;);
-
-​            try {
-
-​                Thread.sleep(7);
-
-​            } catch (InterruptedException e) {
-
-​                // TODO Auto-generated catch block
-
-​                e.printStackTrace();
-
-​            }
-
-​        }
-
-​    }
-
-}
-
-
-
-class ThreadB extends Thread{
-
-​    @Override
-
-​    public void run() {
-
-​        // TODO Auto-generated method stub
-
-​        super.run();
-
-​        for (int i = 0; i &lt; 9999L; i++) {
-
-​            System.out.println(&quot;Thread B run&quot; + i + &quot;times&quot;);
-
-​            try {
-
-​                Thread.sleep(7);
-
-​            } catch (InterruptedException e) {
-
-​                // TODO Auto-generated catch block
-
-​                e.printStackTrace();
-
-​            }
-
-​        }
-
-​    }
-
-}</code></pre>
-<p>运行结果</p>
-<pre><code>Thread A run0times
-
-Thread B run0times
-
-线程A是是否是守护线程false
-
-线程B是是否是守护线程true
-
-线程main是是否是守护线程false
-
-Thread A run1times
-
-Thread B run1times
-
-Thread A run2times
-
-Thread B run2times
-
-Thread A run3times
-
-Thread B run3times
-
-Thread B run4times
-
-Thread A run4times
-
-Thread B run5times</code></pre><p>从以上，可以发现，前台线程一旦结束，守护线程就退出了</p>
-<h3 id="当前线程副本：ThreadLocal"><a href="#当前线程副本：ThreadLocal" class="headerlink" title="当前线程副本：ThreadLocal"></a>当前线程副本：ThreadLocal</h3><ol>
-<li><p>当用ThreadLocal维护变量时，ThradLocal为每个使用该变量的线程提供独立的线程副本</p>
-</li>
-<li><p>ThreadLocal<t>下的主要方法</t></p>
-<pre><code>/**
-
-​     \* Returns the current thread&#39;s &quot;initial value&quot; for this
-
-​     \* thread-local variable.  This method will be invoked the first
-
-​     \* time a thread accesses the variable with the {@link #get}
-
-​     \* method, unless the thread previously invoked the {@link #set}
-
-​     \* method, in which case the {@code initialValue} method will not
-
-​     \* be invoked for the thread.  Normally, this method is invoked at
-
-​     \* most once per thread, but it may be invoked again in case of
-
-​     \* subsequent invocations of {@link #remove} followed by {@link #get}.
-
-​     *
-
-​     \* &lt;p&gt;This implementation simply returns {@code null}; if the
-
-​     \* programmer desires thread-local variables to have an initial
-
-​     \* value other than {@code null}, {@code ThreadLocal} must be
-
-​     \* subclassed, and this method overridden.  Typically, an
-
-​     \* anonymous inner class will be used.
-
-​     *
-
-​     \* @return the initial value for this thread-local
-
-​     */
-
-​    protected T initialValue() {
-
-​        return null;
-
-​    }</code></pre><pre><code>/**
-
-​     \* Returns the value in the current thread&#39;s copy of this
-
-​     \* thread-local variable.  If the variable has no value for the
-
-​     \* current thread, it is first initialized to the value returned
-
-​     \* by an invocation of the {@link #initialValue} method.
-
-​     *
-
-​     \* @return the current thread&#39;s value of this thread-local
-
-​     */
-
-​    public T get() {
-
-​        Thread t = Thread.currentThread();
-
-​        ThreadLocalMap map = getMap(t);
-
-​        if (map != null) {
-
-​            ThreadLocalMap.Entry e = map.getEntry(this);
-
-​            if (e != null) {
-
-​                @SuppressWarnings(&quot;unchecked&quot;)
-
-​                T result = (T)e.value;
-
-​                return result;
-
-​            }
-
-​        }
-
-​        return setInitialValue();
-
-​    }</code></pre><pre><code>/**
-
-​     \* Sets the current thread&#39;s copy of this thread-local variable
-
-​     \* to the specified value.  Most subclasses will have no need to
-
-​     \* override this method, relying solely on the {@link #initialValue}
-
-​     \* method to set the values of thread-locals.
-
-​     *
-
-​     \* @param value the value to be stored in the current thread&#39;s copy of
-
-​     \*        this thread-local.
-
-​     */
-
-​    public void set(T value) {
-
-​        Thread t = Thread.currentThread();
-
-​        ThreadLocalMap map = getMap(t);
-
-​        if (map != null) {
-
-​            map.set(this, value);
-
-​        } else {
-
-​            createMap(t, value);
-
-​        }
-
-​    }</code></pre><pre><code> /**
-
-​     \* Removes the current thread&#39;s value for this thread-local
-
-​     \* variable.  If this thread-local variable is subsequently
-
-​     \* {@linkplain #get read} by the current thread, its value will be
-
-​     \* reinitialized by invoking its {@link #initialValue} method,
-
-​     \* unless its value is {@linkplain #set set} by the current thread
-
-​     \* in the interim.  This may result in multiple invocations of the
-
-​     \* {@code initialValue} method in the current thread.
-
-​     *
-
-​     \* @since 1.5
-
-​     */
-
-​     public void remove() {
-
-​         ThreadLocalMap m = getMap(Thread.currentThread());
-
-​         if (m != null) {
-
-​             m.remove(this);
-
-​         }
-
-​     }</code></pre><ol start="3">
-<li>简单使用</li>
-</ol>
-<pre><code>public class ThreadLocalDemo {
-
-​    // 通过匿名内部类覆盖initialValue(),指定初始指
-
-​    private static ThreadLocal&lt;Integer&gt; threadLocal = new ThreadLocal&lt;Integer&gt;() {
-
-​        @Override
-
-​        protected Integer initialValue() {
-
-​            // TODO Auto-generated method stub
-
-​            return 0;
-
-​        }
-
-​    };
-
-
+<li><p>查看已安装的 Mariadb 数据库版本。</p>
+<pre><code>  rpm -qa|grep -i mariadb</code></pre></li>
+<li><p>卸载已安装的 Mariadb 数据库。</p>
+<pre><code>  rpm -qa|grep mariadb|xargs rpm -e --nodeps</code></pre></li>
+<li><p>查看Mariadb 数据库版本是否已经删除</p>
+<pre><code>  rpm -qa|grep -i mariadb</code></pre></li>
+<li><p>下载安装包文件</p>
+<pre><code>  wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</code></pre></li>
+<li><p>安装安装包文件</p>
+<pre><code>  rpm -ivh mysql-community-release-el7-5.noarch.rpm</code></pre></li>
+<li><p>查看可用的 mysql 安装文件</p>
+<pre><code>  yum repolist all | grep mysql</code></pre></li>
+<li><p>安装mysql</p>
+<pre><code>  yum install mysql-server</code></pre></li>
+<li><p>检查mysql是否安装成功</p>
+<pre><code>  rpm -qa | grep mysql</code></pre></li>
+<li><p>启动mysql服务</p>
+<pre><code>  systemctl start mysqld.service #启动 mysql
+  systemctl restart mysqld.service #重启 mysql
+  systemctl stop mysqld.service #停止 mysql
+  systemctl enable mysqld.service #设置 mysql 开机启动</code></pre></li>
+<li><p>设置密码<br>  mysql5.6 安装完成后，它的 root 用户的密码默认是空的，我们需要及时用 mysql 的 root 用户登录（第一次直接回车，不用输入密码），并修改密码。</p>
+<pre><code>  [root@iZj6c2henxcd80p48fqem4Z ~]# mysql -u root
+  Welcome to the MySQL monitor.  Commands end with ; or \g.
+  Your MySQL connection id is 2
+  Server version: 5.6.45 MySQL Community Server (GPL)
+
+  Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+  Oracle is a registered trademark of Oracle Corporation and/or its
+  affiliates. Other names may be trademarks of their respective
+  owners.
+
+  Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+
+  mysql&gt; use mysql;
+  Reading table information for completion of table and column names
+  You can turn off this feature to get a quicker startup with -A
+
+  Database changed
+  mysql&gt; update user set password = PASSWORD(&quot;test2019@!&quot;) where User=&#39;root&#39;;
+  Query OK, 4 rows affected (0.00 sec)
+  Rows matched: 4  Changed: 4  Warnings: 0
+
+  mysql&gt; flush privileges
+      -&gt; ;
+  Query OK, 0 rows affected (0.00 sec)
+
+  mysql&gt; 
 </code></pre></li>
-</ol>
-<p>   ​    public static ThreadLocal<integer> getThreadLocal() {</integer></p>
-<p>   ​        return threadLocal;</p>
-<p>   ​    }</p>
-<p>   ​    /**</p>
-<p>   ​     * 获取下一个序列值</p>
-<p>   ​     * @return</p>
-<p>   ​     */</p>
-<p>   ​    public int getNextNum() {</p>
-<p>   ​        threadLocal.set(threadLocal.get() + 1);</p>
-<p>   ​        return threadLocal.get();</p>
-<p>   ​    }</p>
-<p>   ​    </p>
-<p>   ​    private static class ThreadClient extends Thread{</p>
-<p>   ​        private ThreadLocalDemo sn;</p>
-<p>   ​        public ThreadClient(ThreadLocalDemo sn) {</p>
-<p>   ​            super();</p>
-<p>   ​            this.sn = sn;</p>
-<p>   ​        }</p>
-<p>   ​        </p>
-<p>   ​        @Override</p>
-<p>   ​        public void run() {</p>
-<p>   ​            super.run();</p>
-<p>   ​            for (int i = 0; i &lt; 3; i++) {</p>
-<p>   ​                // 每个线程打出三个序列号</p>
-<p>   ​                System.out.println(“thread” + Thread.currentThread().getName() + “&gt;&gt;” + sn.getNextNum());</p>
-<p>   ​            }</p>
-<p>   ​            // 每个线程用完记得移除 </p>
-<p>   ​            sn.getThreadLocal().remove();</p>
-<p>   ​        }</p>
-<p>   ​    }</p>
-<p>   ​    </p>
-<p>   ​    public static void main(String[] args) {</p>
-<p>   ​        ThreadLocalDemo threadLocalDemo = new ThreadLocalDemo();</p>
-<p>   ​        ThreadClient threadClient1 = new ThreadClient(threadLocalDemo);</p>
-<p>   ​        ThreadClient threadClient2 = new ThreadClient(threadLocalDemo);</p>
-<p>   ​        ThreadClient threadClient3 = new ThreadClient(threadLocalDemo);</p>
-<p>   ​        threadClient1.start();</p>
-<p>   ​        threadClient2.start();</p>
-<p>   ​        threadClient3.start();</p>
-<p>   ​    }</p>
-<p>   ​    </p>
-<p>   }</p>
-<pre><code>
-   结果
-</code></pre><p>   threadThread-0&gt;&gt;1</p>
-<p>   threadThread-0&gt;&gt;2</p>
-<p>   threadThread-1&gt;&gt;1</p>
-<p>   threadThread-0&gt;&gt;3</p>
-<p>   threadThread-2&gt;&gt;1</p>
-<p>   threadThread-1&gt;&gt;2</p>
-<p>   threadThread-2&gt;&gt;2</p>
-<p>   threadThread-1&gt;&gt;3</p>
-<p>   threadThread-2&gt;&gt;3</p>
-<pre><code>
-   每个线程虽然都共享了ThreadLocalDemo实例，但并为相互影响，这是因为用ThreadLocal为每个线程提供了单独的副本
-
-   4. 注意
-
-   使用ThreadLocal，一般是申明在静态变量中，如果不断的创建，而没有调用remove()方法，将会导致内存泄漏
-
-### 线程异常的处理
-
-1. run()方法不允许throw Exception,所有的异常必须在run方法内进行处理（try catch）
-
-2. 对于unchecked exception，比较合理的一个方法是注册一个实现UncaughtExceptionHandler接口的对象实例来处理
-</code></pre><p>import java.lang.Thread.UncaughtExceptionHandler;</p>
-<p>public class ThreadExceptionDemo {</p>
-<p>​    public static void main(String[] args) {</p>
-<p>​        ThreadB threadB = new ThreadB();</p>
-<p>​        Thread thread = new Thread(threadB);</p>
-<p>​        thread.setUncaughtExceptionHandler(new ExceptionHandlerThreadB());</p>
-<p>​        thread.start();</p>
-<p>​    }</p>
-<p>}</p>
-<p>class ExceptionHandlerThreadB implements UncaughtExceptionHandler{</p>
-<p>​    @Override</p>
-<p>​    public void uncaughtException(Thread t, Throwable e) {</p>
-<p>​        System.out.println(“an exception has been captured\n”);</p>
-<p>​        System.out.printf(“Thread:%s\n”,t.getId());</p>
-<p>​        System.out.printf(“Exception: %s: %s\n”,e.getClass().getName(), e.getMessage());</p>
-<p>​        System.out.println(“stack trace: \n”);</p>
-<p>​        e.printStackTrace(System.out);</p>
-<p>​        System.out.printf(“Thread status: %s\n”, t.getState());</p>
-<p>​    }</p>
-<p>​    </p>
-<p>}</p>
-<p>class ThreadB extends Thread{</p>
-<p>​    @Override</p>
-<p>​    public void run() {</p>
-<p>​        // TODO Auto-generated method stub</p>
-<p>​        super.run();</p>
-<p>​        int number0 = Integer.parseInt(“TTT”);</p>
-<p>​    }</p>
-<p>}</p>
-<pre><code>
-结果
-</code></pre><p>an exception has been captured</p>
-<p>Thread:12</p>
-<p>Exception: java.lang.NumberFormatException: For input string: “TTT”</p>
-<p>stack trace: </p>
-<p>java.lang.NumberFormatException: For input string: “TTT”</p>
-<p>​    at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)</p>
-<p>​    at java.base/java.lang.Integer.parseInt(Integer.java:652)</p>
-<p>​    at java.base/java.lang.Integer.parseInt(Integer.java:770)</p>
-<p>​    at ThreadB.run(ThreadExceptionDemo.java:32)</p>
-<p>​    at java.base/java.lang.Thread.run(Thread.java:834)</p>
-<p>Thread status: RUNNABLE<br>```</p>
-<p><a href="https://gitee.com/missj/thread" target="_blank" rel="noopener">源码地址</a></p>
+<li><p>设置远程主机登录</p>
+<pre><code>  mysql&gt; GRANT ALL PRIVILEGES ON *.* TO root@&quot;%&quot; IDENTIFIED BY &quot;test2019@!&quot;;
+  Query OK, 0 rows affected (0.00 sec)</code></pre></li>
+<li><p>大小写敏感设置<br>  linux下mysql安装完后是默认：区分表名的大小写，不区分列名的大小写；<br>  用root帐号登录后，在/etc/my.cnf中的[mysqld]后添加lower_case_table_names = 1（其中 0：区分大小写，1：不区分大小写）<br>  设置完后需要重启mysql</p>
+</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 freedom.9527@qq.com </span>
@@ -1200,12 +711,12 @@ Thread B run5times</code></pre><p>从以上，可以发现，前台线程一旦�
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>线程</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.7k</span></p>
+    <p><span class="copy-title">文章标题:</span>Centos安装mysql</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">603</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="missj">missj</a></p>
-    <p><span class="copy-title">发布时间:</span>2018-12-16, 10:41:26</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 09:45:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/12/16/线程/" title="线程">http://wanmisy.github.io/2018/12/16/线程/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-29, 10:30:55</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 11:14:23</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/29/Centos安装mysql/" title="Centos安装mysql">http://wanmisy.github.io/2019/08/29/Centos安装mysql/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
