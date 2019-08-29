@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>组合模式 | blog</title>
-  <meta name="keywords" content=" java , 设计模式 , 编程 ">
-  <meta name="description" content="组合模式 | blog">
+  <title>centos安装redis | blog</title>
+  <meta name="keywords" content=" linux , redis ">
+  <meta name="description" content="centos安装redis | blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="清风舞明月，幽梦落花间。一梦醒来，恍如隔世，两眉间，相思尽染">
 <meta property="og:type" content="website">
@@ -575,9 +575,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-组合模式" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-centos安装redis" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">组合模式</h1>
+        <h1 class="article-title">centos安装redis</h1>
     
     <div class="article-meta">
         
@@ -585,30 +585,28 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="设计模式">设计模式</a>
+                <a href="javascript:" data-rel="redis">redis</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a href="javascript:" class="color5">java</a>
+            <a href="javascript:" class="color1">linux</a>
             
-            <a href="javascript:" class="color5">设计模式</a>
-            
-            <a href="javascript:" class="color3">编程</a>
+            <a href="javascript:" class="color1">redis</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-05-22 12:15:27'>2018-10-18 09:42</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 11:54:36'>2019-08-29 11:23</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:459</span>
+        <span>字数:173</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -627,7 +625,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#组合模式（部分整体模式）"><span class="toc-text">组合模式（部分整体模式）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-text">案例</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#centos-安装redis"><span class="toc-text">centos 安装redis</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -642,119 +640,30 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="组合模式（部分整体模式）"><a href="#组合模式（部分整体模式）" class="headerlink" title="组合模式（部分整体模式）"></a>组合模式（部分整体模式）</h2><p>用于把一组相似的对象当作一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。</p>
-<a id="more"></a>
-
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
-<li>高层模块调用简单</li>
-<li>节点自由增加</li>
+        <h1 id="centos-安装redis"><a href="#centos-安装redis" class="headerlink" title="centos 安装redis"></a>centos 安装redis</h1><ul>
+<li>下载fedora的epel仓库<code>yum install epel-release</code></li>
+<li>安装redis数据库<code>yum install redis</code></li>
+<li>安装完毕后，使用下面的命令启动redis服务<pre><code>  # 启动redis
+  service redis start
+  # 停止redis
+  service redis stop
+  # 查看redis运行状态
+  service redis status
+  # 查看redis进程
+  ps -ef | grep red</code></pre></li>
+<li>设置redis为开机自动启动<code>chkconfig redis on</code></li>
+<li>防火墙开放相应端口<pre><code>  # 开启6379
+  /sbin/iptables -I INPUT -p tcp --dport 6379 -j ACCEPT
+  # 开启6380
+  /sbin/iptables -I INPUT -p tcp --dport 6380 -j ACCEPT
+  # 保存
+  /etc/rc.d/init.d/iptables save
+  # centos 7下执行
+  service iptables save</code></pre></li>
+<li>修改redis默认端口和密码<code>vi /etc/redis.conf</code>，文件中port对应端口、requirepass对应密码</li>
+<li>使用配置文件启动 redis<code>redis-server /etc/redis.conf &amp;</code></li>
 </ul>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>在使用组合模式时，其叶子和树枝的声明都是实现类，而不是接口，违反了依赖倒置原则</p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><pre><code>import java.util.ArrayList;
-import java.util.List;
 
-public class Employee {
-    private String name;
-    private String dept;
-    private int salary;
-    private List&lt;Employee&gt; subordinates;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDept() {
-        return dept;
-    }
-
-    public void setDept(String dept) {
-        this.dept = dept;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public List&lt;Employee&gt; getSubordinates() {
-        return subordinates;
-    }
-
-    public void setSubordinates(List&lt;Employee&gt; subordinates) {
-        this.subordinates = subordinates;
-    }
-
-    public Employee(String name, String dept, int salary, List&lt;Employee&gt; subordinates) {
-        super();
-        this.name = name;
-        this.dept = dept;
-        this.salary = salary;
-        this.subordinates = subordinates;
-        subordinates = new ArrayList&lt;Employee&gt;();
-    }
-
-    public Employee(String name, String dept, int salary) {
-        super();
-        this.name = name;
-        this.dept = dept;
-        this.salary = salary;
-        subordinates = new ArrayList&lt;Employee&gt;();
-    }
-
-    @Override
-    public String toString() {
-        return &quot;Employee [name=&quot; + name + &quot;, dept=&quot; + dept + &quot;, salary=&quot; + salary + &quot;, subordinates=&quot; + subordinates
-                + &quot;]&quot;;
-    }
-
-    public void add(Employee e) {
-        subordinates.add(e);
-    }
-
-    public void remove(Employee e) {
-        subordinates.remove(e);
-    }
-
-}</code></pre><pre><code>
-public class CompositePatternDemo {
-    public static void main(String[] args) {
-
-        Employee CEO = new Employee(&quot;John&quot;, &quot;CEO&quot;, 30000);
-        Employee headSales = new Employee(&quot;Robert&quot;, &quot;Head Sales&quot;, 20000);
-        Employee headMarketing = new Employee(&quot;Michel&quot;, &quot;Head Marketing&quot;, 20000);
-        Employee clerk1 = new Employee(&quot;Laura&quot;, &quot;Marketing&quot;, 10000);
-        Employee clerk2 = new Employee(&quot;Bob&quot;, &quot;Marketing&quot;, 10000);
-        Employee salesExecutive1 = new Employee(&quot;Richard&quot;, &quot;Sales&quot;, 10000);
-        Employee salesExecutive2 = new Employee(&quot;Rob&quot;, &quot;Sales&quot;, 10000);
-
-        CEO.add(headSales);
-        CEO.add(headMarketing);
-        headSales.add(salesExecutive1);
-        headSales.add(salesExecutive2);
-        headMarketing.add(clerk1);
-        headMarketing.add(clerk2);
-
-        // 打印该组织的所有员工
-        System.out.println(&quot;-------------------公司员工情况----------------------&quot;);
-        System.out.println(CEO);
-        for (Employee headEmployee : CEO.getSubordinates()) {
-            // 打印CEO的直属一级部下
-            System.out.println(headEmployee);
-            for (Employee employee : headEmployee.getSubordinates()) {
-                // 打印CEO的二级部下
-                System.out.println(employee);
-            }
-        }
-
-    }
-}</code></pre>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 freedom.9527@qq.com </span>
     </div>
@@ -767,12 +676,12 @@ public class CompositePatternDemo {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>组合模式</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">459</span></p>
+    <p><span class="copy-title">文章标题:</span>centos安装redis</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">173</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="missj">missj</a></p>
-    <p><span class="copy-title">发布时间:</span>2018-10-18, 09:42:54</p>
-    <p><span class="copy-title">最后更新:</span>2019-05-22, 12:15:27</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/10/18/组合模式/" title="组合模式">http://wanmisy.github.io/2018/10/18/组合模式/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-29, 11:23:39</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 11:54:36</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/29/centos安装redis/" title="centos安装redis">http://wanmisy.github.io/2019/08/29/centos安装redis/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
