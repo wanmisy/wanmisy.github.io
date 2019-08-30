@@ -8,7 +8,7 @@
       <link href="/2019/08/30/mongodb-%E5%AE%89%E8%A3%85/"/>
       <url>/2019/08/30/mongodb-%E5%AE%89%E8%A3%85/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="mongodb安装"><a href="#mongodb安装" class="headerlink" title="mongodb安装"></a>mongodb安装</h2><ul><li>安装mongodb<code>yum install mongodb</code></li><li>mongodb启动<pre><code>  /usr/local/mongodb/bin/mongod   --dbpath=/data/db   // 指定数据库  --logpath=/usr/local/mongodb/logs  // 指定日志文件  --logappend    --port=27017  // 指定端口  --bind_ip_all  // 不指定ip  --fork  // 后台守护进程运行</code></pre></li></ul>]]></content>
       
       
       
@@ -21,7 +21,7 @@
       <link href="/2019/08/29/memcached-%E5%AE%89%E8%A3%85/"/>
       <url>/2019/08/29/memcached-%E5%AE%89%E8%A3%85/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h2 id="memcached安装"><a href="#memcached安装" class="headerlink" title="memcached安装"></a>memcached安装</h2><ul><li>更细yum<code>yum update</code></li><li>安装memcached<code>yum install memcahced</code></li><li>启动memcached<br>```<h3 id="启动memcache"><a href="#启动memcache" class="headerlink" title="启动memcache"></a>启动memcache</h3>/usr/local/memcached/bin/memcached </li></ul><p>-d -p 11211<br>-u memcached<br>-m 1985<br>-c 1024 -P /var/run/memcached/memcached.pid</p><blockquote><p>说明[-d守护进程运行、 -u指定用户、 -p指定端口]<br>```</p></blockquote>]]></content>
       
       
       
