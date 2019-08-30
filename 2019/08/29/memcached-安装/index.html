@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>单例模式 | blog</title>
-  <meta name="keywords" content=" java , 设计模式 , 编程 ">
-  <meta name="description" content="单例模式 | blog">
+  <title>memcached 安装 | blog</title>
+  <meta name="keywords" content>
+  <meta name="description" content="memcached 安装 | blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="清风舞明月，幽梦落花间。一梦醒来，恍如隔世，两眉间，相思尽染">
 <meta property="og:type" content="website">
@@ -591,40 +591,24 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-memcached-安装" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">单例模式</h1>
+        <h1 class="article-title">memcached 安装</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            
-                <a href="javascript:" data-rel="设计模式">设计模式</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            
-            <a href="javascript:" class="color5">java</a>
-            
-            <a href="javascript:" class="color5">设计模式</a>
-            
-            <a href="javascript:" class="color3">编程</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-05-22 12:15:27'>2018-10-12 10:55</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 12:09:42'>2019-08-29 12:09</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:698</span>
+        <span>字数:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -643,7 +627,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#单例模式"><span class="toc-text">单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特征"><span class="toc-text">特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#意图"><span class="toc-text">意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要解决"><span class="toc-text">主要解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#何时使用"><span class="toc-text">何时使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何解决"><span class="toc-text">如何解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键代码"><span class="toc-text">关键代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单例模式的几种实现方式"><span class="toc-text">单例模式的几种实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-懒汉式，线程不安全"><span class="toc-text">1. 懒汉式，线程不安全</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-懒汉式，线程安全"><span class="toc-text">2.懒汉式，线程安全</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-饿汉式，线程安全"><span class="toc-text">3. 饿汉式，线程安全</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-双检锁-双重校验锁（DCL，即-double-checked-locking-）"><span class="toc-text">4.双检锁/双重校验锁（DCL，即 double-checked locking ）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#5-登记式-静态内部类"><span class="toc-text">5.登记式/静态内部类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-枚举"><span class="toc-text">6.枚举</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -658,84 +642,7 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>单例模式，属于创建型模式，提供了一种对象创建的最佳方式。它确保了一个类只有一个实例，并提供了一个全局访问点。  </p>
-<a id="more"></a>
-<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><ul>
-<li><p>单例类只能有一个实例</p>
-</li>
-<li><p>单例类必须自己创建自己的唯一实例</p>
-</li>
-<li><p>单例类必须给所有其他对象提供这一实例  </p>
-<h3 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h3><p>保证一个类仅有一个实例，并提供一个访问他的全局访问点</p>
-<h3 id="主要解决"><a href="#主要解决" class="headerlink" title="主要解决"></a>主要解决</h3><p>一个全局使用的类频繁的创建和销毁</p>
-<h3 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h3><p>当你想控制实例数目，节省系统资源的时候</p>
-<h3 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h3><p>判断系统是否有这个实例，有则返回，无则创建</p>
-<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><p>私有构造函数</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>减少了内存开销，避免了实例的频繁创建和销毁</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>无接口，不能继承，与单一职责冲突</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>getInstance() 方法中需要使用同步锁 synchronized (Singleton.class) 防止多线程同时进入造成 instance 被多次实例化。</p>
-<h3 id="单例模式的几种实现方式"><a href="#单例模式的几种实现方式" class="headerlink" title="单例模式的几种实现方式"></a>单例模式的几种实现方式</h3><h6 id="1-懒汉式，线程不安全"><a href="#1-懒汉式，线程不安全" class="headerlink" title="1. 懒汉式，线程不安全"></a>1. 懒汉式，线程不安全</h6><pre><code>public class Singleton {  
-  private static Singleton instance;  
-  private Singleton (){}  
-
-  public static Singleton getInstance() {  
-      if (instance == null) {  
-          instance = new Singleton();  
-      }  
-      return instance;  
-  }  
-}</code></pre><h6 id="2-懒汉式，线程安全"><a href="#2-懒汉式，线程安全" class="headerlink" title="2.懒汉式，线程安全"></a>2.懒汉式，线程安全</h6><pre><code>public class Singleton {  
-  private static Singleton instance;  
-  private Singleton (){}  
-  public static synchronized Singleton getInstance() {  
-      if (instance == null) {  
-          instance = new Singleton();  
-      }  
-      return instance;  
-  }  
-}</code></pre><p>这种加了synchronized，具有很好的懒加载（需要用到创建实例的时候再去创建实例），能够在多线程中很好的工作，但正是由于加了同步，虽然保证了单例，却影响了效率</p>
-<h6 id="3-饿汉式，线程安全"><a href="#3-饿汉式，线程安全" class="headerlink" title="3. 饿汉式，线程安全"></a>3. 饿汉式，线程安全</h6><pre><code>public class Singleton {  
-  private static Singleton instance = new Singleton();  
-  private Singleton (){}
-
-  public static Singleton getInstance() {  
-      return instance;  
-  }  
-}</code></pre><p>static确保了，类在加载的时候，就已经实例了，所以确保了线程安全。缺点是资源效率不高，可能getInstance()永远不会执行到，但执行该类的其他静态方法或者加载了该类（class.forName)，那么这个实例仍然初始化，这个时候，就浪费了内存，产生了垃圾对象，达不到lazy loading的效果了</p>
-<h6 id="4-双检锁-双重校验锁（DCL，即-double-checked-locking-）"><a href="#4-双检锁-双重校验锁（DCL，即-double-checked-locking-）" class="headerlink" title="4.双检锁/双重校验锁（DCL，即 double-checked locking ）"></a>4.双检锁/双重校验锁（DCL，即 double-checked locking ）</h6><pre><code>public class Singleton {  
-  private volatile static Singleton singleton;  
-  private Singleton (){}  
-  public static Singleton getInstance() {  
-      if (singleton == null) {  
-          synchronized (Singleton.class) {  
-              if (singleton == null) {  
-                  singleton = new Singleton();  
-              }  
-          }  
-      }  
-      return singleton;  
-  }  
-}</code></pre><p>这种方式采用双锁机制，安全且在多线程情况下能保持高性能。</p>
-<h6 id="5-登记式-静态内部类"><a href="#5-登记式-静态内部类" class="headerlink" title="5.登记式/静态内部类"></a>5.登记式/静态内部类</h6><pre><code>public class Singleton {  
-  private static class SingletonHolder {  
-      private static final Singleton INSTANCE = new Singleton();  
-  }  
-  private Singleton (){}  
-  public static final Singleton getInstance() {  
-      return SingletonHolder.INSTANCE;  
-  }  
-}</code></pre><h6 id="6-枚举"><a href="#6-枚举" class="headerlink" title="6.枚举"></a>6.枚举</h6><pre><code>public enum SingletonEnum {  
-  /** 
-  * 1.从Java1.5开始支持; 
-  * 2.无偿提供序列化机制; 
-  * 3.绝对防止多次实例化，即使在面对复杂的序列化或者反射攻击的时候; 
-  */  
-  instance;  
-  private String others;  
-  SingletonEnum() {}
-}</code></pre></li>
-</ul>
-
+        
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 freedom.9527@qq.com </span>
     </div>
@@ -748,12 +655,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>单例模式</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">698</span></p>
+    <p><span class="copy-title">文章标题:</span>memcached 安装</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">0</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="missj">missj</a></p>
-    <p><span class="copy-title">发布时间:</span>2018-10-12, 10:55:00</p>
-    <p><span class="copy-title">最后更新:</span>2019-05-22, 12:15:27</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/10/12/单例模式/" title="单例模式">http://wanmisy.github.io/2018/10/12/单例模式/</a>
+    <p><span class="copy-title">发布时间:</span>2019-08-29, 12:09:41</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 12:09:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/08/29/memcached-安装/" title="memcached 安装">http://wanmisy.github.io/2019/08/29/memcached-安装/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
