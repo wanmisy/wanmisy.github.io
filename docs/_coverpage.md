@@ -1,12 +1,8 @@
 <!-- ![logo](media/logo.jpg) -->
 
-# 个人网站
 
 > 💪分享技术，热爱技术
 
 - 指尖有改变世界的力量
-- 开源成就美好
-- 书山有路勤为径
 
-
-[开始阅读](README.md)
+[开始阅读](jvm/01-jvm-memory-structure)
