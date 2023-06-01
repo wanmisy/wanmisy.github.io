@@ -1,0 +1,49 @@
+/* 加密页面需要的 CSS 样式 */
+.password-wrapper {
+    display: none;
+    background: #f4f5f7;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-wrapper.show {
+    display: flex;
+}
+
+.password-wrapper.show .password-content {
+    animation: showBox 0.2s linear;
+}
+
+.password-content {
+    flex-direction: column;
+    background: white;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    animation: hideBox 0.2s linear;
+}
+
+.password-content h2 {
+    margin-top: 0;
+}
+
+.password-form {
+    margin: 20px 0 0;
+}
+
+/* CSS 动画效果 */
+@keyframes showBox {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+@keyframes hideBox {
+    from { transform: scale(1); }
+    to { transform: scale(0); }
+}
