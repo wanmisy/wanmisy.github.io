@@ -362,5 +362,5 @@ a{
 		<div class="chips chips--green chips--rotate"></div>
 		<div class="chips chips--blue"></div>
 	</div>
-	任小玉同学，六一快乐啊
+	
 </div>
