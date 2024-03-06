@@ -5,4 +5,4 @@
 
 - 指尖有改变世界的力量
 
-[开始阅读](README)
+[开始阅读](jvm/01-jvm-memory-structure)

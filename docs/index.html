@@ -40,40 +40,7 @@
 	  password: {
         value: 'mypassword',
         message: 'Please enter a password to view this page:'
-      },
-	  // 在需要加密的页面顶部显示密码输入框
-        afterMounted: function() {
-            // 获取密码输入框
-            var passwordForm = document.querySelector('.password-form');
-            // 创建密码输入框
-            var passwordInput = document.createElement('input');
-            passwordInput.setAttribute('type', 'password');
-            // 创建登录按钮
-            var loginButton = document.createElement('button');
-            loginButton.innerText = 'Login';
-            loginButton.setAttribute('style', 'margin-left: 10px;');
-            // 将密码输入框和登录按钮添加到密码输入区域
-            passwordForm.appendChild(passwordInput);
-            passwordForm.appendChild(loginButton);
-            // 获取需要加密的页面的 password-wrapper 元素
-            var passwordWrapper = document.querySelector('.password-wrapper');
-            // 显示密码输入框和登录按钮
-            passwordWrapper.classList.toggle('show');
-            // 为登录按钮添加点击事件监听器
-            loginButton.addEventListener('click', function() {
-                var passwordValue = passwordInput.value;
-                if (passwordValue === window.$docsify.password.value) {
-                    // 如果密码正确，显示需要加密的页面
-                    passwordWrapper.classList.toggle('show');
-                } else {
-                    // 如果密码错误，显示错误提示信息
-                    var errorMessage = document.createElement('p');
-                    errorMessage.innerText = 'Invalid password. Please try again.';
-                    errorMessage.setAttribute('style', 'color: red; margin-top: 10px;');
-                    passwordForm.appendChild(errorMessage);
-                }
-            });
-        }
+      }
     }
   </script>
   <!-- Docsify v4 -->
